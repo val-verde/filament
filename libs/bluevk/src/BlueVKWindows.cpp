@@ -29,7 +29,7 @@ bool loadLibrary() {
 }
 
 void* getInstanceProcAddr() {
-    return GetProcAddress(library, "vkGetInstanceProcAddr");
+    return reinterpret_cast <void *> (GetProcAddress(library, "vkGetInstanceProcAddr"));
 }
 
 } // namespace bluevk

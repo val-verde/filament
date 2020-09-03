@@ -17,7 +17,7 @@
 #include <utils/Path.h>
 
 #include <direct.h>
-#include <Strsafe.h>
+#include <strsafe.h>
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <windows.h>

@@ -25,7 +25,7 @@
 #include <iostream> // for cerr
 
 #if defined(WIN32)
-    #include <Winsock2.h>
+    #include <winsock2.h>
     #include <utils/unwindows.h>
 #else
     #include <arpa/inet.h>

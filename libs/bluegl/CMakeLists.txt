@@ -6,7 +6,7 @@ set(PUBLIC_HDR_DIR      include)
 
 if (WIN32)
     enable_language(ASM_MASM)
-    set_property(SOURCE src/BlueGLCoreWindowsImpl.S PROPERTY LANGUAGE ASM_MASM)
+    # set_property(SOURCE src/BlueGLCoreWindowsImpl.S PROPERTY LANGUAGE ASM_MASM)
 endif()
 
 # public headers are always in include/${TARGET}/

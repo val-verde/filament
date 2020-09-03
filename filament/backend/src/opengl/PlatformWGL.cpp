@@ -16,7 +16,7 @@
 
 #include "PlatformWGL.h"
 
-#include <Wingdi.h>
+#include <wingdi.h>
 
 #include "OpenGLDriverFactory.h"
 
@@ -29,7 +29,7 @@
 
 #include "gl_headers.h"
 
-#include "Windows.h"
+#include <windows.h>
 #include <GL/gl.h>
 #include "GL/glext.h"
 #include "GL/wglext.h"
