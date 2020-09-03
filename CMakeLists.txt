@@ -226,7 +226,7 @@ endif()
 # General compiler flags
 # ==================================================================================================
 set(CXX_STANDARD "-std=c++17")
-if (WIN32)
+if (MSVC)
     set(CXX_STANDARD "/std:c++17")
 endif()
 
@@ -335,7 +335,10 @@ endif()
 if (NOT WEBGL)
     set(GC_SECTIONS "-Wl,--gc-sections")
 endif()
-set(B_SYMBOLIC_FUNCTIONS "-Wl,-Bsymbolic-functions")
+
+if (NOT WIN32)
+    set(B_SYMBOLIC_FUNCTIONS "-Wl,-Bsymbolic-functions")
+endif()
 
 if (APPLE)
     set(GC_SECTIONS "-Wl,-dead_strip")
@@ -475,7 +478,7 @@ function(list_licenses OUTPUT MODULES)
 endfunction(list_licenses)
 
 set(COMBINE_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/build/linux/combine-static-libs.sh")
-if (WIN32)
+if (MSVC)
     set(COMBINE_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/build/windows/combine-static-libs.bat")
     set(CMAKE_AR "lib.exe")
 endif()
