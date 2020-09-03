@@ -93,7 +93,7 @@ endif()
 
 if (WIN32)
     # Needed for shlwapi.h (GetModuleFileName)
-    target_link_libraries(${TARGET} PUBLIC Shlwapi)
+    target_link_libraries(${TARGET} PUBLIC shlwapi)
 endif()
 
 if (LINUX)
