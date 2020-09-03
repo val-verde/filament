@@ -52,7 +52,7 @@ function combine_static_libs {
         "${AR_TOOL}" -x "$a"
 
         # Prepend the library name to the object file to ensure each object file has a unique name.
-        for o in *.o; do
+        for o in *.o*; do
             mv "$o" "${dir_name}_${o}"
         done
 
