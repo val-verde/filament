@@ -25,6 +25,8 @@ option(FILAMENT_SUPPORTS_XCB "Include XCB support in Linux builds" ON)
 
 option(FILAMENT_SUPPORTS_XLIB "Include XLIB support in Linux builds" ON)
 
+option(FORCE_ANDROID "Force Android build on Linux" OFF)
+
 set(FILAMENT_PER_RENDER_PASS_ARENA_SIZE_IN_MB "2" CACHE STRING
     "Per render pass arena size. Must be roughly 1 MB larger than FILAMENT_PER_FRAME_COMMANDS_SIZE_IN_MB, default 2."
 )
@@ -83,7 +85,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # ==================================================================================================
 # OS specific
 # ==================================================================================================
-if (UNIX AND NOT APPLE AND NOT ANDROID AND NOT WEBGL)
+if (UNIX AND NOT APPLE AND NOT ANDROID AND NOT FORCE_ANDROID AND NOT WEBGL)
     set(LINUX TRUE)
 endif()
 
@@ -97,11 +99,11 @@ if (LINUX)
     endif()
 endif()
 
-if (ANDROID OR WEBGL OR IOS)
+if (ANDROID OR FORCE_ANDROID OR WEBGL OR IOS)
     set(IS_MOBILE_TARGET TRUE)
 endif()
 
-if (NOT ANDROID AND NOT WEBGL AND NOT IOS)
+if (NOT ANDROID AND NOT FORCE_ANDROID AND NOT WEBGL AND NOT IOS)
     set(IS_HOST_PLATFORM TRUE)
 endif()
 
@@ -249,7 +251,7 @@ if (WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_USE_MATH_DEFINES=1")
 endif()
 
-if (LINUX)
+if (LINUX AND NOT FORCE_ANDROID)
     option(USE_STATIC_LIBCXX "Link against the static runtime libraries." ON)
     if (${USE_STATIC_LIBCXX})
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
@@ -299,7 +301,7 @@ endif()
 
 # On Android RELEASE builds, we disable exceptions and RTTI to save some space (about 75 KiB
 # saved by -fno-exception and 10 KiB saved by -fno-rtti).
-if (ANDROID OR WEBGL)
+if (ANDROID OR FORCE_ANDROID OR WEBGL)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fno-exceptions -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-rtti")
 endif()
 
