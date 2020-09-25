@@ -147,6 +147,10 @@ add_library(${TARGET} SHARED ${SRCS})
 # libraries we're linking against
 target_link_libraries(${TARGET} ${EXTRA_LIBS})
 
+if(LINUX)
+target_link_libraries(${TARGET} iconv)
+endif()
+
 if(NOT MSVC)
     target_compile_options(${TARGET}
         PRIVATE -Wno-unused-variable
