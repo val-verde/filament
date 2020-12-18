@@ -15,6 +15,10 @@ add_executable(${TARGET} ${SRCS})
 
 target_link_libraries(${TARGET} matdbg filaflat backend_headers utils getopt SPIRV-Tools spirv-cross-glsl)
 
+if (CMAKE_SYSTEM_NAME STREQUAL Windows)
+   target_link_libraries(${TARGET} ws2_32)
+endif ()
+
 # glslang contains a copy of the SPIRV headers, so let's just use those. The leading ".." in the
 # following variable refers to the project name that we define in glslang/tnt, and the trailing ".."
 # in the path allows us to do #include <SPIRV/disassemble.h>
