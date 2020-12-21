@@ -174,7 +174,7 @@ private:
         uint16_t subpassIndex; // 2 bytes
         VkVertexInputAttributeDescription vertexAttributes[VERTEX_ATTRIBUTE_COUNT]; // 16*5 bytes
         VkVertexInputBindingDescription vertexBuffers[VERTEX_ATTRIBUTE_COUNT]; // 12*5 bytes
-    #if _WIN32
+    #ifdef _WIN32
         uint16_t reserved; // 2 bytes
     #endif
     };
